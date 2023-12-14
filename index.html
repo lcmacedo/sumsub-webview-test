@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>WebSDK CDN Example</title>
+    <title>Transfero App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body style="margin: 0">
@@ -13,7 +13,6 @@
     let snsWebSdkInstance = snsWebSdk
       .init(accessToken, () => this.getNewAccessToken())
       .withConf({
-        lang: "en",
         email: applicantEmail,
         phone: applicantPhone,
       })
@@ -27,6 +26,9 @@
       .on("idCheck.onApplicantSubmitted", () => {
         console.log("onApplicantSubmitted");
       })
+      .on("idCheck.onApplicantResubmitted", () => {
+        console.log("onApplicantResubmitted");
+      })
       .onMessage((type, payload) => {
         console.log("onMessage", type, payload);
       })
@@ -38,5 +40,5 @@
     return Promise.resolve($NEW_ACCESS_TOKEN);
   }
 
-  launchWebSdk("_act-32f9ee2a-0096-4e75-b2d6-cb3c4db7ede8", "email", "phone");
+  launchWebSdk("token", "email", "phone");
 </script>
